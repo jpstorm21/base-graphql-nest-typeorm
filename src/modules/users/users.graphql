@@ -1,0 +1,40 @@
+scalar Date
+
+type Query {
+    getUsers: [User]
+}
+
+type Mutation {
+    createUser(input: UserData): User
+    editUser(id: ID, input: UserDataEdit): User
+    deleteUser(id: ID): User
+}
+
+type User {
+    id: ID!
+    rut: String!
+    name: String!
+    email: String!
+    password: String!
+    passwordSalt: String!
+    phone: String!
+    state: Boolean!
+    createdAt: Date!
+    updatedAt: Date!
+    deletedAt: Date!
+}
+
+input UserData {
+    rut: String!
+    name: String!
+    email: String!
+    password: String!
+    phone: String!
+}
+
+input UserDataEdit {
+    rut: String!
+    name: String!
+    email: String!
+    phone: String!
+}
