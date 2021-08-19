@@ -7,6 +7,11 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class InputLogin {
+    rut: string;
+    password: string;
+}
+
 export class UserData {
     rut: string;
     name: string;
@@ -22,16 +27,23 @@ export class UserDataEdit {
     phone: string;
 }
 
-export abstract class IQuery {
-    abstract getUsers(): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
-}
-
 export abstract class IMutation {
+    abstract login(input?: Nullable<InputLogin>): Nullable<LoginResponse> | Promise<Nullable<LoginResponse>>;
+
     abstract createUser(input?: Nullable<UserData>): Nullable<User> | Promise<Nullable<User>>;
 
     abstract editUser(id?: Nullable<string>, input?: Nullable<UserDataEdit>): Nullable<User> | Promise<Nullable<User>>;
 
     abstract deleteUser(id?: Nullable<string>): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export class LoginResponse {
+    token: string;
+    user?: Nullable<User>;
+}
+
+export abstract class IQuery {
+    abstract getUsers(): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
 }
 
 export class User {

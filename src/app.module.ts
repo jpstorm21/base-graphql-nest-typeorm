@@ -3,7 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // modules
-import { UsersModule } from './modules';
+import { UsersModule, AuthModule } from './modules';
 
 // entities
 import { Users } from './entities';
@@ -17,6 +17,7 @@ const { TYPEORM_HOST, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE } = p
 @Module({
   imports: [
     UsersModule,
+    AuthModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/**/*.graphql'],
       installSubscriptionHandlers: true,
